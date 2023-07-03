@@ -6,9 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.0-alpha.15",
+    "@apollo/experimental-nextjs-app-support": "^0.3.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.6",
+    "@mui/types": "^7.2.4",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/graphql": "^14.5.0",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -17,6 +26,13 @@
     "next": "13.4.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-redux": "^8.1.1",
+    "redux": "^4.2.1",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "4.0.1",
+    "@graphql-codegen/client-preset": "4.0.1",
+    "graphql": "^16.7.1"
   }
 }
