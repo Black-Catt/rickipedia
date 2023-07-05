@@ -27,3 +27,6 @@ a {
 ul {
   padding-left: 10px;
 }
+.MuiPagination-ul {
+  justify-content: center;
+}

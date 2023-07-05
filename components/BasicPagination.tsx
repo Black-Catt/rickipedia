@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { FC } from 'react';
 import Pagination from '@mui/material/Pagination';
@@ -25,7 +25,6 @@ const BasicPagination: FC<BasisPaginationProps> = ({
       <Stack spacing={2}>
         <Pagination
           count={pages || 0}
-          color="primary"
           page={page}
           siblingCount={1}
           onChange={handleChange}

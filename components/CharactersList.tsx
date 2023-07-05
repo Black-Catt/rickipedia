@@ -13,12 +13,18 @@ import {
   sortCharacters,
 } from '@/redux/features/charactersSlice';
 import { useGetCharactersQuery } from '../graphql/types';
+import { BasicPagination, Loader, NoCharacters, SideBar } from './index';
 
 const CharactersList: FC = () => {
   const [page, setPage] = useState(1);
   const dispatch = useAppDispatch();
+
+  const {
+    filters: { gender, status },
+  } = useAppSelector((state) => state.charactersSlice);
+
   const { data, loading } = useGetCharactersQuery({
-    variables: { filter: { gender: 'male', status: 'alive' }, page: page },
+    variables: { filter: { gender: gender, status: status }, page: page },
   });
 
   useEffect(() => {
@@ -38,22 +44,40 @@ const CharactersList: FC = () => {
     (state) => state.charactersSlice
   );
 
+  if (loading) return <Loader />;
+  if (
+    !data ||
+    !data.characters ||
+    !data.characters.results ||
+    !characters.length
+  ) {
+    return <NoCharacters />;
+  }
+
   return (
-    <Container maxWidth="lg">
-      <GridContainer>
-        {characters?.map((character: Character) => (
-          <Link key={character.id} href={`/character/${character.id}`}>
-            <CharacterCard
-              image={character.image}
-              name={character.name}
-              type={character.type}
-              location={character.location}
-              episode={character.episode}
-              status={character.status}
-            />
-          </Link>
-        ))}
-      </GridContainer>
+    <Container maxWidth="xl">
+      <div className="flex justify-center gap-4 pt-[50px]">
+        <SideBar />
+        <GridContainer>
+          {characters?.map((character: Character) => (
+            <Link key={character.id} href={`/character/${character.id}`}>
+              <CharacterCard
+                image={character.image}
+                name={character.name}
+                type={character.type}
+                location={character.location}
+                episode={character.episode}
+                status={character.status}
+              />
+            </Link>
+          ))}
+        </GridContainer>
+      </div>
+      <BasicPagination
+        pages={data.characters.info?.pages}
+        setPage={setPage}
+        page={page}
+      />
     </Container>
   );
 };
@@ -61,10 +85,11 @@ const CharactersList: FC = () => {
 export default CharactersList;
 
 const GridContainer = styled.section`
-  padding-top: 50px;
   margin-bottom: 50px;
   display: grid;
   gap: 2rem 0.5rem;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-items: center;
+  width: 100%;
+  max-width: 1200px;
 `;

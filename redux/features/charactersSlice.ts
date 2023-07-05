@@ -8,8 +8,12 @@ interface InitialState {
   filters: Filters;
 }
 
+type Gender = 'Male' | 'Genderless' | 'Female' | 'Unknown';
+type Status = 'Alive' | 'Dead' | 'Unknown';
 interface Filters {
   text: string;
+  gender: Gender;
+  status: Status;
 }
 
 const initialState: InitialState = {
@@ -18,6 +22,8 @@ const initialState: InitialState = {
   sort: 'a-z',
   filters: {
     text: '',
+    gender: 'Male',
+    status: 'Alive',
   },
 };
 

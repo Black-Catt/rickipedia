@@ -1,6 +1,6 @@
-import { CharactersList, SearchBar } from '@/components';
+import { CharactersList, SearchBar, Filters, SideBar } from '@/components';
 
-export default function Page() {
+export default async function Page() {
   return (
     <main>
       <SearchBar />

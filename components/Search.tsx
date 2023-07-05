@@ -24,7 +24,7 @@ const Search: FC = () => {
         name="text"
         value={value}
         onChange={handleChange}
-        placeholder="Search"
+        placeholder="Search on this page"
       />
     </Box>
   );
