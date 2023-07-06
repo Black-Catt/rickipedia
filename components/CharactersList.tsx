@@ -20,11 +20,14 @@ const CharactersList: FC = () => {
   const dispatch = useAppDispatch();
 
   const {
-    filters: { gender, status },
+    filters: { gender, status, text },
   } = useAppSelector((state) => state.charactersSlice);
 
   const { data, loading } = useGetCharactersQuery({
-    variables: { filter: { gender: gender, status: status }, page: page },
+    variables: {
+      filter: { gender: gender, status: status, name: text },
+      page: page,
+    },
   });
 
   useEffect(() => {

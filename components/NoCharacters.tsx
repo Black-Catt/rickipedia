@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 const NoCharacters: FC = ({}) => {
   return (
-    <section className="flex items-center h-full sm:p-16 dark:bg-gray-900 dark:text-gray-100">
+    <section className="flex items-center h-full w-full sm:p-16 dark:bg-gray-900 dark:text-gray-100">
       <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8 space-y-8 text-center sm:max-w-md">
         <svg
           xmlns="http://www.w3.org/2000/svg"
