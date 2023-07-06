@@ -55,30 +55,27 @@ const CharactersList: FC = () => {
   }
 
   return (
-    <Container maxWidth="xl">
-      <div className="flex justify-center gap-4 pt-[50px]">
-        <SideBar />
-        <GridContainer>
-          {characters?.map((character: Character) => (
-            <Link key={character.id} href={`/character/${character.id}`}>
-              <CharacterCard
-                image={character.image}
-                name={character.name}
-                type={character.type}
-                location={character.location}
-                episode={character.episode}
-                status={character.status}
-              />
-            </Link>
-          ))}
-        </GridContainer>
-      </div>
+    <div className="max-w-7xl">
+      <GridContainer>
+        {characters?.map((character: Character) => (
+          <Link key={character.id} href={`/character/${character.id}`}>
+            <CharacterCard
+              image={character.image}
+              name={character.name}
+              type={character.type}
+              location={character.location}
+              episode={character.episode}
+              status={character.status}
+            />
+          </Link>
+        ))}
+      </GridContainer>
       <BasicPagination
         pages={data.characters.info?.pages}
         setPage={setPage}
         page={page}
       />
-    </Container>
+    </div>
   );
 };
 
@@ -91,5 +88,5 @@ const GridContainer = styled.section`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-items: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
 `;
