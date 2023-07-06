@@ -24,7 +24,8 @@ const Search: FC = () => {
         name="text"
         value={value}
         onChange={handleChange}
-        placeholder="Search on this page"
+        placeholder="Search"
+        className="shadow-lg"
       />
     </Box>
   );

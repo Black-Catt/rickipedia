@@ -1,5 +1,3 @@
-import { Character } from '@/graphql/types';
-import { changeFirstLetter } from '@/utils/changeFirstLetter';
 import { FC } from 'react';
 import { Location, Maybe } from '../graphql/types';
 
@@ -19,11 +17,11 @@ const InfoList: FC<InfoListProps> = ({ location }) => {
                 <li key={i} className="pb-3 sm:pb-4">
                   <div className="flex items-center space-x-4">
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-                        {changeFirstLetter(String(el), true)}
+                      <p className="text-sm font-medium capitalize text-gray-900 truncate dark:text-white">
+                        {String(el)}
                       </p>
-                      <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                        {changeFirstLetter(String(arr[i + 1]), true)}
+                      <p className="text-sm text-gray-500 capitalize truncate dark:text-gray-400">
+                        {String(arr[i + 1])}
                       </p>
                     </div>
                   </div>

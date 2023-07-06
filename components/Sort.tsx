@@ -29,6 +29,7 @@ const Sort: FC<SortProps> = () => {
         value={sort}
         label="sorting"
         onChange={handleChange}
+        className="shadow-lg"
       >
         <MenuItem value="a-z">A-Z</MenuItem>
         <MenuItem value="z-a">Z-A</MenuItem>

@@ -9,6 +9,7 @@ import SideBar from './SideBar';
 import InfoTable from './InfoTable';
 import InfoList from './InfoList';
 import Stats from './Stats';
+import Header from './Header';
 
 export {
   CharacterCard,
@@ -22,4 +23,5 @@ export {
   InfoTable,
   InfoList,
   Stats,
+  Header,
 };
