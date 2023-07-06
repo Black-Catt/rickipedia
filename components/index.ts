@@ -6,6 +6,9 @@ import Loader from './Loader';
 import Filters from './Filters';
 import NoCharacters from './NoCharacters';
 import SideBar from './SideBar';
+import InfoTable from './InfoTable';
+import InfoList from './InfoList';
+import Stats from './Stats';
 
 export {
   CharacterCard,
@@ -16,4 +19,7 @@ export {
   Filters,
   NoCharacters,
   SideBar,
+  InfoTable,
+  InfoList,
+  Stats,
 };

@@ -2,25 +2,38 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
+    };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  Upload: { input: any; output: any; }
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  Upload: { input: any; output: any };
 };
 
 export enum CacheControlScope {
   Private = 'PRIVATE',
-  Public = 'PUBLIC'
+  Public = 'PUBLIC',
 }
 
 export type Character = {
@@ -28,7 +41,7 @@ export type Character = {
   /** Time at which the character was created in the database. */
   created?: Maybe<Scalars['String']['output']>;
   /** Episodes in which this character appeared. */
-  episode: Array<Maybe<Episode>>;
+  episode?: Array<Maybe<Episode>>;
   /** The gender of the character ('Female', 'Male', 'Genderless' or 'unknown'). */
   gender?: Maybe<Scalars['String']['output']>;
   /** The id of the character. */
@@ -122,7 +135,7 @@ export type Location = {
   /** The name of the location. */
   name?: Maybe<Scalars['String']['output']>;
   /** List of characters who have been last seen in the location. */
-  residents: Array<Maybe<Character>>;
+  residents?: Array<Maybe<Character>>;
   /** The type of the location. */
   type?: Maybe<Scalars['String']['output']>;
 };
@@ -155,52 +168,71 @@ export type Query = {
   locationsByIds?: Maybe<Array<Maybe<Location>>>;
 };
 
-
 export type QueryCharacterArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryCharactersArgs = {
   filter?: InputMaybe<FilterCharacter>;
   page?: InputMaybe<Scalars['Int']['input']>;
 };
 
-
 export type QueryCharactersByIdsArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
-
 export type QueryEpisodeArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryEpisodesArgs = {
   filter?: InputMaybe<FilterEpisode>;
   page?: InputMaybe<Scalars['Int']['input']>;
 };
 
-
 export type QueryEpisodesByIdsArgs = {
   ids: Array<Scalars['ID']['input']>;
 };
 
-
 export type QueryLocationArgs = {
   id: Scalars['ID']['input'];
 };
-
 
 export type QueryLocationsArgs = {
   filter?: InputMaybe<FilterLocation>;
   page?: InputMaybe<Scalars['Int']['input']>;
 };
 
-
 export type QueryLocationsByIdsArgs = {
   ids: Array<Scalars['ID']['input']>;
+};
+
+export type GetSingleCharacterQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+export type GetSingleCharacterQuery = {
+  __typename?: 'Query';
+  character?: {
+    __typename?: 'Character';
+    gender?: string | null;
+    image?: string | null;
+    name?: string | null;
+    type?: string | null;
+    status?: string | null;
+    species?: string | null;
+    episode: Array<{
+      __typename?: 'Episode';
+      episode?: string | null;
+      name?: string | null;
+      air_date?: string | null;
+    } | null>;
+    location?: {
+      __typename?: 'Location';
+      dimension?: string | null;
+      name?: string | null;
+    } | null;
+  } | null;
 };
 
 export type GetCharactersQueryVariables = Exact<{
@@ -208,29 +240,119 @@ export type GetCharactersQueryVariables = Exact<{
   page: Scalars['Int']['input'];
 }>;
 
+export type GetCharactersQuery = {
+  __typename?: 'Query';
+  characters?: {
+    __typename?: 'Characters';
+    results?: Array<{
+      __typename?: 'Character';
+      image?: string | null;
+      name?: string | null;
+      type?: string | null;
+      status?: string | null;
+      id?: string | null;
+    } | null> | null;
+    info?: {
+      __typename?: 'Info';
+      next?: number | null;
+      pages?: number | null;
+      prev?: number | null;
+      count?: number | null;
+    } | null;
+  } | null;
+};
 
-export type GetCharactersQuery = { __typename?: 'Query', characters?: { __typename?: 'Characters', results?: Array<{ __typename?: 'Character', image?: string | null, name?: string | null, type?: string | null, status?: string | null, id?: string | null } | null> | null, info?: { __typename?: 'Info', next?: number | null, pages?: number | null, prev?: number | null, count?: number | null } | null } | null };
-
-
-export const GetCharactersDocument = gql`
-    query GetCharacters($filter: FilterCharacter, $page: Int!) {
-  characters(filter: $filter, page: $page) {
-    results {
+export const GetSingleCharacterDocument = gql`
+  query GetSingleCharacter($id: ID!) {
+    character(id: $id) {
+      gender
       image
       name
       type
       status
-      id
-    }
-    info {
-      next
-      pages
-      prev
-      count
+      species
+      episode {
+        episode
+        name
+        air_date
+      }
+      location {
+        dimension
+        name
+      }
     }
   }
+`;
+
+/**
+ * __useGetSingleCharacterQuery__
+ *
+ * To run a query within a React component, call `useGetSingleCharacterQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSingleCharacterQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSingleCharacterQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetSingleCharacterQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetSingleCharacterQuery,
+    GetSingleCharacterQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    GetSingleCharacterQuery,
+    GetSingleCharacterQueryVariables
+  >(GetSingleCharacterDocument, options);
 }
-    `;
+export function useGetSingleCharacterLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetSingleCharacterQuery,
+    GetSingleCharacterQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    GetSingleCharacterQuery,
+    GetSingleCharacterQueryVariables
+  >(GetSingleCharacterDocument, options);
+}
+export type GetSingleCharacterQueryHookResult = ReturnType<
+  typeof useGetSingleCharacterQuery
+>;
+export type GetSingleCharacterLazyQueryHookResult = ReturnType<
+  typeof useGetSingleCharacterLazyQuery
+>;
+export type GetSingleCharacterQueryResult = Apollo.QueryResult<
+  GetSingleCharacterQuery,
+  GetSingleCharacterQueryVariables
+>;
+export const GetCharactersDocument = gql`
+  query GetCharacters($filter: FilterCharacter, $page: Int!) {
+    characters(filter: $filter, page: $page) {
+      results {
+        image
+        name
+        type
+        status
+        id
+      }
+      info {
+        next
+        pages
+        prev
+        count
+      }
+    }
+  }
+`;
 
 /**
  * __useGetCharactersQuery__
@@ -249,14 +371,37 @@ export const GetCharactersDocument = gql`
  *   },
  * });
  */
-export function useGetCharactersQuery(baseOptions: Apollo.QueryHookOptions<GetCharactersQuery, GetCharactersQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetCharactersQuery, GetCharactersQueryVariables>(GetCharactersDocument, options);
-      }
-export function useGetCharactersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCharactersQuery, GetCharactersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetCharactersQuery, GetCharactersQueryVariables>(GetCharactersDocument, options);
-        }
-export type GetCharactersQueryHookResult = ReturnType<typeof useGetCharactersQuery>;
-export type GetCharactersLazyQueryHookResult = ReturnType<typeof useGetCharactersLazyQuery>;
-export type GetCharactersQueryResult = Apollo.QueryResult<GetCharactersQuery, GetCharactersQueryVariables>;
+export function useGetCharactersQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    GetCharactersQuery,
+    GetCharactersQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetCharactersQuery, GetCharactersQueryVariables>(
+    GetCharactersDocument,
+    options
+  );
+}
+export function useGetCharactersLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetCharactersQuery,
+    GetCharactersQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetCharactersQuery, GetCharactersQueryVariables>(
+    GetCharactersDocument,
+    options
+  );
+}
+export type GetCharactersQueryHookResult = ReturnType<
+  typeof useGetCharactersQuery
+>;
+export type GetCharactersLazyQueryHookResult = ReturnType<
+  typeof useGetCharactersLazyQuery
+>;
+export type GetCharactersQueryResult = Apollo.QueryResult<
+  GetCharactersQuery,
+  GetCharactersQueryVariables
+>;

@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useAppDispatch } from '../redux/store';
 import { updateFilters } from '@/redux/features/charactersSlice';
-import { lowerFirstLetter } from '../utils/lowerFirstLetter';
+import { changeFirstLetter } from '../utils/changeFirstLetter';
 
 interface FiltersProps {
   title: string;
@@ -17,7 +17,6 @@ interface FiltersProps {
 
 const Filters: FC<FiltersProps> = ({ title, category }) => {
   const dispatch = useAppDispatch();
-
   const [value, setValue] = useState(category[0]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +39,7 @@ const Filters: FC<FiltersProps> = ({ title, category }) => {
       </FormLabel>
       <RadioGroup
         aria-labelledby="demo-controlled-radio-buttons-group"
-        name={lowerFirstLetter(title)}
+        name={changeFirstLetter(title)}
         value={value}
         onChange={handleChange}
       >

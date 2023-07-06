@@ -1,6 +1,8 @@
-overwrite: true
+# overwrite: true
 schema: 'https://rickandmortyapi.com/graphql'
-documents: 'app/*.tsx'
+documents:
+  - 'app/**/*.tsx'
+  - 'app/*.tsx'
 generates:
   graphql/types.ts:
     plugins:

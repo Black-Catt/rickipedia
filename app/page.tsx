@@ -1,4 +1,4 @@
-import { CharactersList, SearchBar, Filters, SideBar } from '@/components';
+import { CharactersList, SearchBar } from '@/components';
 
 export default async function Page() {
   return (

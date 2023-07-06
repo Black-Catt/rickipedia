@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { Character } from '../graphql/types';
 import Image from 'next/image';
+import InfoList from './InfoList';
 
 interface CharacterCard extends Character {
   single?: boolean;
@@ -11,13 +12,11 @@ const CharacterCard: FC<CharacterCard> = ({
   image,
   name,
   type,
-  gender,
   status,
-  species,
   episode,
+  location,
   single = false,
 }) => {
-  const info = { species, status, gender };
 
   const noImage =
     'https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg';
@@ -34,6 +33,11 @@ const CharacterCard: FC<CharacterCard> = ({
         <div className="px-6 py-4">
           <h1 className="font-bold text-xl mb-2 text-black">{name}</h1>
         </div>
+        {single && (
+          <div className="px-6">
+            <InfoList location={location} />
+          </div>
+        )}
         <div className="px-6 pt-4 pb-2">
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
             #{status}
