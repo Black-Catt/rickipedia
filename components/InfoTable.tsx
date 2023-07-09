@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Episode } from '../graphql/types';
+import { Episode } from '../core/types';
 
 interface InfoTableProps {
   episode?: (Episode | null)[];

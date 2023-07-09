@@ -4,20 +4,19 @@ import { FC } from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { Container } from '@mui/material';
-import { Info } from '../graphql/types';
+import { Info } from '../core/types';
+import { useAppDispatch, useAppSelector } from '../redux/store';
+import { setPage } from '@/redux/features/charactersSlice';
 
-interface BasisPaginationProps extends Info {
-  setPage: React.Dispatch<React.SetStateAction<number>>;
-  page: number;
-}
+interface BasisPaginationProps extends Info {}
 
-const BasicPagination: FC<BasisPaginationProps> = ({
-  setPage,
-  page,
-  pages,
-}) => {
+const BasicPagination: FC<BasisPaginationProps> = ({ pages }) => {
+  const { page } = useAppSelector((state) => state.charactersSlice);
+
+  const dispatch = useAppDispatch();
+
   const handleChange = (e: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
+    dispatch(setPage(value));
   };
 
   return (

@@ -1,0 +1,22 @@
+query GetEpisodes($filter: FilterEpisode, $page: Int) {
+  episodes(filter: $filter, page: $page) {
+    results {
+      air_date
+      characters {
+        image
+        name
+        type
+        status
+        id
+      }
+      episode
+      name
+    }
+    info {
+      count
+      next
+      pages
+      prev
+    }
+  }
+}

@@ -21,7 +21,7 @@ const Header: FC<PropsWithChildren<HeaderProps>> = () => {
               <a
                 rel="noopener noreferrer"
                 href={link.url}
-                className="flex items-center capitalize px-4   text-gray-900 "
+                className="flex items-center text-base capitalize px-4   text-gray-900 "
               >
                 {link.text}
               </a>
@@ -29,8 +29,10 @@ const Header: FC<PropsWithChildren<HeaderProps>> = () => {
           ))}
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <button className="self-center px-8 py-3 rounded">Sign in</button>
-          <button className="self-center px-8 py-3 text-white shadow-lg font-semibold rounded bg-violet-400 ">
+          <button className="self-center text-base px-8 py-3 rounded">
+            Sign in
+          </button>
+          <button className="self-center text-base px-8 py-3 text-white shadow-lg font-semibold rounded bg-violet-400 ">
             Sign up
           </button>
         </div>

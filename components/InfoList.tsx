@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Location, Maybe } from '../graphql/types';
+import { Location, Maybe } from '../core/types';
 
 interface InfoListProps {
   location: Maybe<Location> | undefined;

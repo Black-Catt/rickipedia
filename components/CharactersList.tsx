@@ -2,30 +2,39 @@
 
 import styled from '@emotion/styled';
 import { FC, useEffect, useState } from 'react';
-import { Container } from '@mui/material';
 import CharacterCard from './CharacterCard';
 import { useAppSelector, useAppDispatch } from '../redux/store';
-import { Character } from '@/graphql/types';
+import { Character, Episode } from '@/core/types';
 import Link from 'next/link';
 import {
   filterCharacters,
   loadCharacters,
   sortCharacters,
 } from '@/redux/features/charactersSlice';
-import { useGetCharactersQuery } from '../graphql/types';
-import { BasicPagination, Loader, NoCharacters, SideBar } from './index';
+import { useGetCharactersQuery } from '../core/types';
+import { BasicPagination, Loader, NoCharacters } from './index';
+import { usePathname } from 'next/navigation';
 
-const CharactersList: FC = () => {
-  const [page, setPage] = useState(1);
+interface CharactersListProps {
+  episodes?: Episode;
+  pagination: boolean;
+}
+
+const CharactersList: FC<CharactersListProps> = ({
+  episodes,
+  pagination = true,
+}) => {
+  const pathname = usePathname();
   const dispatch = useAppDispatch();
 
   const {
-    filters: { gender, status, text },
+    filters: { gender, status, text, species },
+    page,
   } = useAppSelector((state) => state.charactersSlice);
 
   const { data, loading } = useGetCharactersQuery({
     variables: {
-      filter: { gender: gender, status: status, name: text },
+      filter: { gender: gender, status: status, name: text, species: species },
       page: page,
     },
   });
@@ -34,7 +43,10 @@ const CharactersList: FC = () => {
     if (!loading && data && data.characters) {
       dispatch(loadCharacters(data.characters.results));
     }
-  }, [data]);
+    if (episodes && pathname === '/episodes') {
+      dispatch(loadCharacters(episodes.characters));
+    }
+  }, [data, episodes]);
 
   const { filters, sort } = useAppSelector((state) => state.charactersSlice);
 
@@ -67,17 +79,12 @@ const CharactersList: FC = () => {
               name={character.name}
               type={character.type}
               location={character.location}
-              episode={character.episode}
               status={character.status}
             />
           </Link>
         ))}
       </GridContainer>
-      <BasicPagination
-        pages={data.characters.info?.pages}
-        setPage={setPage}
-        page={page}
-      />
+      {pagination && <BasicPagination pages={data.characters.info?.pages} />}
     </div>
   );
 };

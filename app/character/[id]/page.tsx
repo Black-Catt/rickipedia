@@ -1,6 +1,12 @@
-import { CharacterCard, InfoTable, Loader, Stats } from '@/components';
+import {
+  CharacterCard,
+  InfoTable,
+  Loader,
+  Stats,
+  NoCharacters,
+} from '@/components';
 import { getClient } from '@/lib/client';
-import { GetSingleCharacterDocument as query } from '@/graphql/types';
+import { GetSingleCharacterDocument as query } from '@/core/types';
 
 const SingleCharacterPage = async ({ params }: { params: { id: string } }) => {
   const { data, loading } = await getClient().query({
@@ -10,7 +16,7 @@ const SingleCharacterPage = async ({ params }: { params: { id: string } }) => {
 
   if (loading) return <Loader />;
   if (!data || !data.character) {
-    return <p>No characters found.</p>;
+    return <NoCharacters />;
   }
   return (
     <div className="max-w-6xl my-0 mx-auto">

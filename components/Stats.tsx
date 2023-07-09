@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Character } from '../graphql/types';
+import { Character } from '../core/types';
 import { PiGenderIntersexFill } from 'react-icons/pi';
 import { GrStatusInfo } from 'react-icons/gr';
 

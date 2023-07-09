@@ -3,8 +3,9 @@ schema: 'https://rickandmortyapi.com/graphql'
 documents:
   - 'app/**/*.tsx'
   - 'app/*.tsx'
+  - 'core/graphql/*.gql'
 generates:
-  graphql/types.ts:
+  core/types.ts:
     plugins:
       - 'typescript'
       - 'typescript-operations'

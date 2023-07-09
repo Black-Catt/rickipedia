@@ -1,20 +1,32 @@
 import { FC } from 'react';
-import Filters from './Filters';
-import { genders, statuses } from '../utils/constants';
+import RadioFilter from './RadioFilter';
+import { FilterOption } from '../utils/constants';
+import ClearFlittersButton from './ClearFiltersButton';
+import SelectFilter from './SelectFilter';
 
-interface SideBarProps {}
+interface SideBarProps {
+  categories?: FilterOption[];
+  episodes?: boolean;
+  episodeName?: string | null | undefined;
+}
 
-const SideBar: FC<SideBarProps> = ({}) => {
+const SideBar: FC<SideBarProps> = ({
+  categories,
+  episodes = false,
+  episodeName,
+}) => {
   return (
-    <aside className="w-full h-[420px] p-6 sm:w-60 rounded-xl bg-primary shadow-xl text-gray-100">
+    <aside className="w-full h-full p-6 sm:w-60 rounded-xl bg-white shadow-xl text-gray-900 mb-6">
+      <h2 className="text-xl pb-4">{episodeName}</h2>
       <nav className="space-y-8 text-sm">
-        <div className="space-y-2">
-          <Filters title="gender" category={genders} />
-        </div>
-        <div className="space-y-2">
-          <Filters title="status" category={statuses} />
-        </div>
+        {episodes && <SelectFilter />}
+        {categories?.map((el, i) => (
+          <div key={i} className="space-y-2">
+            <RadioFilter title={el.title} category={el.values} />
+          </div>
+        ))}
       </nav>
+      <ClearFlittersButton />
     </aside>
   );
 };

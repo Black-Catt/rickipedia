@@ -1,29 +1,48 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Character } from '@/graphql/types';
+import { Character } from '@/core/types';
 
 interface InitialState {
   characters: Character[];
   filtered_characters: Character[];
   sort: string;
+  page: number;
   filters: Filters;
 }
 
-type Gender = 'Male' | 'Genderless' | 'Female' | 'Unknown';
-type Status = 'Alive' | 'Dead' | 'Unknown';
+export type Gender = 'Male' | 'Genderless' | 'Female' | 'Unknown';
+export type Status = 'Alive' | 'Dead' | 'Unknown';
+export type Species =
+  | 'Human'
+  | 'Alien'
+  | 'Humanoid'
+  | 'Poopybutthole'
+  | 'Mythological'
+  | 'Unknown'
+  | 'Animal'
+  | 'Disease'
+  | 'Robot'
+  | 'Cronenberg'
+  | 'Planet';
+
 interface Filters {
   text: string;
   gender: Gender | null;
   status: Status | null;
+  species: Species | null;
+  episode: string;
 }
 
 const initialState: InitialState = {
   characters: [],
   filtered_characters: [],
   sort: 'a-z',
+  page: 1,
   filters: {
     text: '',
     gender: null,
     status: null,
+    species: null,
+    episode: '1',
   },
 };
 
@@ -37,7 +56,11 @@ const charactersSlice = createSlice({
     },
     updateFilters: (state, { payload }) => {
       const { name, value } = payload;
-      return { ...state, filters: { ...state.filters, [name]: value } };
+      return {
+        ...state,
+        filters: { ...state.filters, [name]: value },
+        page: 1,
+      };
     },
     filterCharacters: (state) => {
       const { characters } = state;
@@ -81,6 +104,16 @@ const charactersSlice = createSlice({
 
       state.filtered_characters = sortedCharacters;
     },
+    setPage: (state, { payload }) => {
+      state.page = payload;
+    },
+    clearFilter: (state) => {
+      state.filters.status = null;
+      state.filters.gender = null;
+      state.filters.species = null;
+      state.filters.episode = '1';
+      state.page = 1;
+    },
   },
 });
 
@@ -90,5 +123,7 @@ export const {
   filterCharacters,
   sortCharacters,
   updateSort,
+  setPage,
+  clearFilter,
 } = charactersSlice.actions;
 export default charactersSlice.reducer;

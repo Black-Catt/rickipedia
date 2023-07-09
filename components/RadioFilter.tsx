@@ -9,12 +9,12 @@ import FormLabel from '@mui/material/FormLabel';
 import { useAppDispatch } from '../redux/store';
 import { updateFilters } from '@/redux/features/charactersSlice';
 
-interface FiltersProps {
+interface RadioFilterProps {
   title: string;
   category: string[];
 }
 
-const Filters: FC<FiltersProps> = ({ title, category }) => {
+const RadioFilter: FC<RadioFilterProps> = ({ title, category }) => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState('');
 
@@ -27,7 +27,7 @@ const Filters: FC<FiltersProps> = ({ title, category }) => {
     <FormControl>
       <FormLabel
         sx={{
-          color: 'white',
+          color: 'black',
           '&.Mui-focused': {
             color: '#824AC3',
           },
@@ -64,4 +64,4 @@ const Filters: FC<FiltersProps> = ({ title, category }) => {
   );
 };
 
-export default Filters;
+export default RadioFilter;

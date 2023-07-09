@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Character } from '../graphql/types';
+import { Character } from '../core/types';
 import Image from 'next/image';
 import InfoList from './InfoList';
 
@@ -13,11 +13,10 @@ const CharacterCard: FC<CharacterCard> = ({
   name,
   type,
   status,
-  episode,
+
   location,
   single = false,
 }) => {
-
   const noImage =
     'https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg';
 
