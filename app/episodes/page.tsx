@@ -15,21 +15,16 @@ const EpisodesPage: FC = ({}) => {
     variables: { episodeId: episode },
   });
 
-  // const { data, loading } = useGetEpisodesQuery({
-  //   variables: { filter: { name: text, episode: episode }, page: page },
-  // });
-
   if (loading) return <Loader />;
   if (!data) {
     return <NoCharacters />;
   }
-  console.log(data);
 
   return (
     <div>
       <div className="flex justify-center gap-9 pt-[50px] mx-auto my-0 max-w-[1500px]">
         <SideBar episodeName={data.episode?.name} episodes={true} />
-        <CharactersList episodes={data.episode} />
+        <CharactersList episodes={data.episode!} />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import styled from '@emotion/styled';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 import CharacterCard from './CharacterCard';
 import { useAppSelector, useAppDispatch } from '../redux/store';
 import { Character, Episode } from '@/core/types';
@@ -17,7 +17,7 @@ import { usePathname } from 'next/navigation';
 
 interface CharactersListProps {
   episodes?: Episode;
-  pagination: boolean;
+  pagination?: boolean;
 }
 
 const CharactersList: FC<CharactersListProps> = ({
