@@ -29,7 +29,8 @@ interface Filters {
   gender: Gender | null;
   status: Status | null;
   species: Species | null;
-  episode: string;
+  episodeId: string;
+  locationId: string;
 }
 
 const initialState: InitialState = {
@@ -42,7 +43,8 @@ const initialState: InitialState = {
     gender: null,
     status: null,
     species: null,
-    episode: '1',
+    episodeId: '1',
+    locationId: '1',
   },
 };
 
@@ -111,7 +113,8 @@ const charactersSlice = createSlice({
       state.filters.status = null;
       state.filters.gender = null;
       state.filters.species = null;
-      state.filters.episode = '1';
+      state.filters.episodeId = '1';
+      state.filters.locationId = '1';
       state.page = 1;
     },
   },

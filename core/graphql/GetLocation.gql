@@ -1,0 +1,12 @@
+query GetLocation($locationId: ID!) {
+  location(id: $locationId) {
+    residents {
+      image
+      name
+      type
+      status
+      id
+    }
+    name
+  }
+}

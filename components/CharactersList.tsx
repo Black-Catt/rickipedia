@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { FC, useEffect } from 'react';
 import CharacterCard from './CharacterCard';
 import { useAppSelector, useAppDispatch } from '../redux/store';
-import { Character, Episode } from '@/core/types';
+import { Character, Episode, Location } from '@/core/types';
 import Link from 'next/link';
 import {
   filterCharacters,
@@ -13,18 +13,18 @@ import {
 } from '@/redux/features/charactersSlice';
 import { useGetCharactersQuery } from '../core/types';
 import { BasicPagination, Loader, NoCharacters } from './index';
-import { usePathname } from 'next/navigation';
 
 interface CharactersListProps {
-  episodes?: Episode;
+  episode?: Episode;
   pagination?: boolean;
+  location?: Location;
 }
 
 const CharactersList: FC<CharactersListProps> = ({
-  episodes,
+  episode,
   pagination = true,
+  location,
 }) => {
-  const pathname = usePathname();
   const dispatch = useAppDispatch();
 
   const {
@@ -43,10 +43,13 @@ const CharactersList: FC<CharactersListProps> = ({
     if (!loading && data && data.characters) {
       dispatch(loadCharacters(data.characters.results));
     }
-    if (episodes && pathname === '/episodes') {
-      dispatch(loadCharacters(episodes.characters));
+    if (episode) {
+      dispatch(loadCharacters(episode.characters));
     }
-  }, [data, episodes]);
+    if (location) {
+      dispatch(loadCharacters(location.residents));
+    }
+  }, [data, episode, location]);
 
   const { filters, sort } = useAppSelector((state) => state.charactersSlice);
 

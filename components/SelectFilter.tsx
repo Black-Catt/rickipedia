@@ -8,9 +8,11 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useAppDispatch } from '../redux/store';
 import { updateFilters } from '@/redux/features/charactersSlice';
 
-interface SelectFilterProps {}
+interface SelectFilterProps {
+  nameId: string;
+}
 
-const SelectFilter: FC<SelectFilterProps> = () => {
+const SelectFilter: FC<SelectFilterProps> = ({ nameId }) => {
   const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
 
@@ -21,20 +23,22 @@ const SelectFilter: FC<SelectFilterProps> = () => {
     );
   };
 
+  const label = nameId === 'episodeId' ? 'Episode' : 'Location';
+
   return (
     <FormControl fullWidth sx={{ marginBottom: 2 }}>
-      <InputLabel id="demo-simple-select-label">Episode</InputLabel>
+      <InputLabel id="simple-select-label">{label}</InputLabel>
       <Select
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
+        labelId="select-label"
+        id="simple-select"
         value={value}
         label="Episode"
-        name="episode"
+        name={nameId}
         onChange={handleChange}
       >
         {[...Array(51).keys()].map((el) => (
           <MenuItem key={el} value={el + 1}>
-            Episode - {el + 1}
+            {label} - {el + 1}
           </MenuItem>
         ))}
       </Select>
