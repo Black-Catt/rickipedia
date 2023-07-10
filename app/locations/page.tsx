@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { useGetLocationQuery } from '../../core/types';
-import { SideBar, NoCharacters } from '@/components';
+import { SideBar, NoCharacters, withAuth } from '@/components';
 import CharactersList from '../../components/CharactersList';
 import Loader from '../../components/Loader';
 import { useAppSelector } from '../../redux/store';
@@ -37,4 +37,4 @@ const LocationPage: FC<LocationPageProps> = ({}) => {
   );
 };
 
-export default LocationPage;
+export default withAuth(LocationPage);

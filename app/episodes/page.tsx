@@ -5,6 +5,7 @@ import { useGetEpisodeQuery } from '../../core/types';
 import Loader from '../../components/Loader';
 import { FC } from 'react';
 import { useAppSelector } from '../../redux/store';
+import withAuth from '../../components/WithAuth';
 
 const EpisodesPage: FC = ({}) => {
   const {
@@ -34,4 +35,4 @@ const EpisodesPage: FC = ({}) => {
   );
 };
 
-export default EpisodesPage;
+export default withAuth(EpisodesPage);

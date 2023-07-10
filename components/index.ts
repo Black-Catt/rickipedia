@@ -13,6 +13,7 @@ import ClearFlittersButton from './ClearFiltersButton';
 import SelectFilter from './SelectFilter';
 import RadioFilter from './RadioFilter';
 import ErrorList from './ErrorList';
+import withAuth from './WithAuth';
 
 export {
   CharacterCard,
@@ -29,5 +30,6 @@ export {
   Header,
   SelectFilter,
   ErrorList,
+  withAuth,
   ClearFlittersButton,
 };

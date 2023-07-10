@@ -4,7 +4,7 @@ import './globals.css';
 import Header from '../components/Header';
 
 export const metadata = {
-  title: 'Rick and Morty',
+  title: 'Rickipedia',
 };
 
 export default function RootLayout({

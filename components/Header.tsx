@@ -26,13 +26,13 @@ const Header: FC<PropsWithChildren<HeaderProps>> = () => {
         <ul className="items-stretch hidden space-x-3 lg:flex">
           {links.map((link) => (
             <li key={link.id} className="flex">
-              <a
+              <Link
                 rel="noopener noreferrer"
                 href={link.url}
                 className="flex items-center text-base capitalize px-4   text-gray-900 "
               >
                 {link.text}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
