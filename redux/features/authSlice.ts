@@ -29,13 +29,15 @@ const authSlice = createSlice({
     clearUser: (state) => {
       state.user = null;
     },
-    signIn: (state, action) => {
+    signIn: (state, { payload }) => {
       const userData = JSON.parse(localStorage.getItem('user') as string);
-      const { password, email } = action.payload.values;
+      const { password, email } = payload;
       if (userData.email === email && userData.password === password) {
         state.user = {
-          ...action.payload,
+          ...payload,
         };
+      } else {
+        alert('Wrong password');
       }
     },
   },

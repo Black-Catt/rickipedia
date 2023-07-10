@@ -38,7 +38,7 @@ const Header: FC<PropsWithChildren<HeaderProps>> = () => {
           </Link>
           <Link
             href="/sign-up"
-            className="self-center text-base px-8 py-3 text-white shadow-lg font-semibold rounded bg-violet-400 "
+            className="self-center text-base px-8 py-3 text-white shadow-lg font-semibold rounded bg-violet-400 duration-100 hover:bg-violet-500 "
           >
             Sign up
           </Link>

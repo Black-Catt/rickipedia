@@ -12,6 +12,7 @@ import Header from './Header';
 import ClearFlittersButton from './ClearFiltersButton';
 import SelectFilter from './SelectFilter';
 import RadioFilter from './RadioFilter';
+import ErrorList from './ErrorList';
 
 export {
   CharacterCard,
@@ -27,5 +28,6 @@ export {
   Stats,
   Header,
   SelectFilter,
+  ErrorList,
   ClearFlittersButton,
 };

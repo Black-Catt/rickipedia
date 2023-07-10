@@ -81,7 +81,13 @@ const SignUpPage: FC = ({}) => {
             <Button
               type="submit"
               variant="contained"
-              sx={{ backgroundColor: '#a78bfa', width: '100px' }}
+              sx={{
+                backgroundColor: '#a78bfa',
+                width: '100px',
+                '&:hover': {
+                  backgroundColor: '#815af4',
+                },
+              }}
               disabled={isSubmitting}
             >
               Sign Up
