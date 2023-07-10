@@ -16,14 +16,14 @@ const SelectFilter: FC<SelectFilterProps> = ({ nameId }) => {
   const [value, setValue] = useState('');
   const dispatch = useAppDispatch();
 
+  const label = nameId === 'episodeId' ? 'Episode' : 'Location';
+
   const handleChange = (e: SelectChangeEvent) => {
     setValue(e.target.value as string);
     dispatch(
       updateFilters({ name: e.target.name, value: String(e.target.value) })
     );
   };
-
-  const label = nameId === 'episodeId' ? 'Episode' : 'Location';
 
   return (
     <FormControl fullWidth sx={{ marginBottom: 2 }}>

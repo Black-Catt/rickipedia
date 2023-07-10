@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 import { links } from '../utils/constants';
 
@@ -29,12 +30,18 @@ const Header: FC<PropsWithChildren<HeaderProps>> = () => {
           ))}
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <button className="self-center text-base px-8 py-3 rounded">
+          <Link
+            href="/sign-in"
+            className="self-center text-base text-gray-900 px-8 py-3 rounded"
+          >
             Sign in
-          </button>
-          <button className="self-center text-base px-8 py-3 text-white shadow-lg font-semibold rounded bg-violet-400 ">
+          </Link>
+          <Link
+            href="/sign-up"
+            className="self-center text-base px-8 py-3 text-white shadow-lg font-semibold rounded bg-violet-400 "
+          >
             Sign up
-          </button>
+          </Link>
         </div>
         <button className="p-4 lg:hidden">
           <svg
