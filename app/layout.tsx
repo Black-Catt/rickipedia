@@ -15,8 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
         <ReduxProvider>
+          <Header />
           <ApolloWrapper>{children}</ApolloWrapper>
         </ReduxProvider>
       </body>

@@ -1,10 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import { FC, PropsWithChildren } from 'react';
 import { links } from '../utils/constants';
+import { useAppSelector, useAppDispatch } from '../redux/store';
+import { clearUser } from '@/redux/features/authSlice';
 
 interface HeaderProps {}
 
 const Header: FC<PropsWithChildren<HeaderProps>> = () => {
+  const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.authSlice);
+
   return (
     <header className="p-4 shadow-lg bg-white text-gray-700">
       <div className="container flex justify-between h-16 mx-auto">
@@ -30,12 +37,21 @@ const Header: FC<PropsWithChildren<HeaderProps>> = () => {
           ))}
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          <Link
-            href="/sign-in"
-            className="self-center text-base text-gray-900 px-8 py-3 rounded"
-          >
-            Sign in
-          </Link>
+          {user ? (
+            <button
+              onClick={() => dispatch(clearUser())}
+              className="self-center text-base text-gray-900 px-8 py-3 rounded"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              href="/sign-in"
+              className="self-center text-base text-gray-900 px-8 py-3 rounded"
+            >
+              Sign in
+            </Link>
+          )}
           <Link
             href="/sign-up"
             className="self-center text-base px-8 py-3 text-white shadow-lg font-semibold rounded bg-violet-400 duration-100 hover:bg-violet-500 "
