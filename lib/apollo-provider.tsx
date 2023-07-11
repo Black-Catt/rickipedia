@@ -10,6 +10,7 @@ import {
   ApolloNextAppProvider,
   NextSSRInMemoryCache,
   SSRMultipartLink,
+  NextSSRApolloClient,
 } from '@apollo/experimental-nextjs-app-support/ssr';
 
 function makeClient() {
@@ -18,7 +19,7 @@ function makeClient() {
     fetchOptions: { cache: 'no-store' },
   });
 
-  return new ApolloClient({
+  return new NextSSRApolloClient({
     cache: new NextSSRInMemoryCache(),
     link:
       typeof window === 'undefined'

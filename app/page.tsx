@@ -1,7 +1,8 @@
 import { CharactersList, SearchBar, SideBar } from '@/components';
+
 import { genders, species, statuses } from '../utils/constants';
 
-export default async function Page() {
+export default function Page() {
   return (
     <main>
       <SearchBar />

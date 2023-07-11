@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useAppSelector } from '../redux/store';
 import { redirect } from 'next/navigation';
@@ -10,7 +9,7 @@ export default function withAuth<T extends JSX.IntrinsicAttributes>(
   Component: ComponentType<T>
 ): ComponentType<T> {
   return function ProtectedRoute({ ...props }) {
-    const { user } = useAppSelector((state) => state.authSlice);
+    const { user } = useAppSelector((state) => state.auth);
 
     useEffect(() => {
       if (!user) {

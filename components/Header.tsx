@@ -10,7 +10,7 @@ interface HeaderProps {}
 
 const Header: FC<PropsWithChildren<HeaderProps>> = () => {
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.authSlice);
+  const { user } = useAppSelector((state) => state.auth);
 
   return (
     <header className="p-4 shadow-lg bg-white text-gray-700">

@@ -10,7 +10,7 @@ import withAuth from '../../components/WithAuth';
 const EpisodesPage: FC = ({}) => {
   const {
     filters: { episodeId },
-  } = useAppSelector((state) => state.charactersSlice);
+  } = useAppSelector((state) => state.characters);
 
   const { data, loading } = useGetEpisodeQuery({
     variables: { episodeId: episodeId },

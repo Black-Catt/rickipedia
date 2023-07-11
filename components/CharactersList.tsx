@@ -30,7 +30,7 @@ const CharactersList: FC<CharactersListProps> = ({
   const {
     filters: { gender, status, text, species },
     page,
-  } = useAppSelector((state) => state.charactersSlice);
+  } = useAppSelector((state) => state.characters);
 
   const { data, loading } = useGetCharactersQuery({
     variables: {
@@ -51,7 +51,7 @@ const CharactersList: FC<CharactersListProps> = ({
     }
   }, [data, episode, location]);
 
-  const { filters, sort } = useAppSelector((state) => state.charactersSlice);
+  const { filters, sort } = useAppSelector((state) => state.characters);
 
   useEffect(() => {
     dispatch(filterCharacters());
@@ -59,7 +59,7 @@ const CharactersList: FC<CharactersListProps> = ({
   }, [filters, sort]);
 
   const { filtered_characters: characters } = useAppSelector(
-    (state) => state.charactersSlice
+    (state) => state.characters
   );
 
   if (loading) return <Loader />;

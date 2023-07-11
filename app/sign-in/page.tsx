@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signIn } from '@/redux/features/authSlice';
+import { selectAuthState, signIn } from '@/redux/features/authSlice';
 import Link from 'next/link';
 import { Container, Box, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -27,7 +27,7 @@ const validationSchema = yup.object({
 
 const SignInPage: FC<SignInPageProps> = () => {
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.authSlice);
+  const { user } = useAppSelector((state) => state.auth);
 
   const {
     register,

@@ -48,7 +48,7 @@ const initialState: InitialState = {
   },
 };
 
-const charactersSlice = createSlice({
+export const charactersSlice = createSlice({
   name: 'characters',
   initialState,
   reducers: {

@@ -11,7 +11,7 @@ import { setPage } from '@/redux/features/charactersSlice';
 interface BasisPaginationProps extends Info {}
 
 const BasicPagination: FC<BasisPaginationProps> = ({ pages }) => {
-  const { page } = useAppSelector((state) => state.charactersSlice);
+  const { page } = useAppSelector((state) => state.characters);
 
   const dispatch = useAppDispatch();
 

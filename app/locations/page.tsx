@@ -1,6 +1,6 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useSyncExternalStore } from 'react';
 import { useGetLocationQuery } from '../../core/types';
 import { SideBar, NoCharacters, withAuth } from '@/components';
 import CharactersList from '../../components/CharactersList';
@@ -12,7 +12,7 @@ interface LocationPageProps {}
 const LocationPage: FC<LocationPageProps> = ({}) => {
   const {
     filters: { locationId },
-  } = useAppSelector((state) => state.charactersSlice);
+  } = useAppSelector((state) => state.characters);
 
   const { data, loading } = useGetLocationQuery({
     variables: { locationId: locationId },
