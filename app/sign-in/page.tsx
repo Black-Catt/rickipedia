@@ -1,10 +1,10 @@
 'use client';
 
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { selectAuthState, signIn } from '@/redux/features/authSlice';
+import { signIn } from '@/redux/features/authSlice';
 import Link from 'next/link';
 import { Container, Box, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import { ErrorList } from '../../components/index';
 import { redirect } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
+import toast from 'react-hot-toast';
 
 interface SignInPageProps {}
 
@@ -45,9 +46,12 @@ const SignInPage: FC<SignInPageProps> = () => {
     dispatch(signIn(values));
   };
 
-  if (user) {
-    redirect('/');
-  }
+  useEffect(() => {
+    if (user) {
+      toast.success('Successfully entered!');
+      redirect('/');
+    }
+  }, [user]);
 
   return (
     <Container maxWidth="md">

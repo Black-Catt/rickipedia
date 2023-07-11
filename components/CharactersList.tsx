@@ -13,6 +13,7 @@ import {
 } from '@/redux/features/charactersSlice';
 import { useGetCharactersQuery } from '../core/types';
 import { BasicPagination, Loader, NoCharacters } from './index';
+import toast from 'react-hot-toast';
 
 interface CharactersListProps {
   episode?: Episode;
@@ -32,7 +33,7 @@ const CharactersList: FC<CharactersListProps> = ({
     page,
   } = useAppSelector((state) => state.characters);
 
-  const { data, loading } = useGetCharactersQuery({
+  const { data, loading, error } = useGetCharactersQuery({
     variables: {
       filter: { gender: gender, status: status, name: text, species: species },
       page: page,
@@ -63,6 +64,7 @@ const CharactersList: FC<CharactersListProps> = ({
   );
 
   if (loading) return <Loader />;
+  if (error) toast.error('An error ocurred');
   if (
     !data ||
     !data.characters ||

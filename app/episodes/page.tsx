@@ -6,17 +6,19 @@ import Loader from '../../components/Loader';
 import { FC } from 'react';
 import { useAppSelector } from '../../redux/store';
 import withAuth from '../../components/WithAuth';
+import toast from 'react-hot-toast';
 
 const EpisodesPage: FC = ({}) => {
   const {
     filters: { episodeId },
   } = useAppSelector((state) => state.characters);
 
-  const { data, loading } = useGetEpisodeQuery({
+  const { data, loading, error } = useGetEpisodeQuery({
     variables: { episodeId: episodeId },
   });
 
   if (loading) return <Loader />;
+  if (error) toast.error('An error ocurred');
   if (!data) {
     return <NoCharacters />;
   }

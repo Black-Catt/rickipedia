@@ -1,11 +1,12 @@
 'use client';
 
-import { FC, useSyncExternalStore } from 'react';
+import { FC } from 'react';
 import { useGetLocationQuery } from '../../core/types';
 import { SideBar, NoCharacters, withAuth } from '@/components';
 import CharactersList from '../../components/CharactersList';
 import Loader from '../../components/Loader';
 import { useAppSelector } from '../../redux/store';
+import toast from 'react-hot-toast';
 
 interface LocationPageProps {}
 
@@ -14,11 +15,12 @@ const LocationPage: FC<LocationPageProps> = ({}) => {
     filters: { locationId },
   } = useAppSelector((state) => state.characters);
 
-  const { data, loading } = useGetLocationQuery({
+  const { data, loading , error } = useGetLocationQuery({
     variables: { locationId: locationId },
   });
 
   if (loading) return <Loader />;
+  if (error) toast.error('An error ocurred');
   if (!data) {
     return <NoCharacters />;
   }

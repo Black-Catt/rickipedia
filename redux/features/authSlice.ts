@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import toast from 'react-hot-toast';
 
 interface AuthState {
   user: {
@@ -37,12 +38,11 @@ export const authSlice = createSlice({
           ...payload,
         };
       } else {
-        alert('Wrong password');
+        toast.error('Wrong data');
       }
     },
   },
 });
 
 export const { setUser, clearUser, signIn } = authSlice.actions;
-export const selectAuthState = (state: any) => state.auth.authState;
 export default authSlice.reducer;

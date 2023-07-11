@@ -3,19 +3,13 @@
 import { FC } from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  Alert,
-  Box,
-  Button,
-  Container,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../redux/store';
 import { setUser } from '@/redux/features/authSlice';
 import ErrorList from '../../components/ErrorList';
+import toast from 'react-hot-toast';
 
 interface SignUpFormValues {
   username: string;
@@ -47,6 +41,7 @@ const SignUpPage: FC = ({}) => {
 
   const onSubmit = async (values: SignUpFormValues) => {
     dispatch(setUser(values));
+    toast.success('Successfully entered!');
     window.location.replace('/');
   };
 
