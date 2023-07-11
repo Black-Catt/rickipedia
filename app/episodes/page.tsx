@@ -25,7 +25,7 @@ const EpisodesPage: FC = ({}) => {
 
   return (
     <div>
-      <div className="flex justify-center gap-9 pt-[50px] mx-auto my-0 max-w-[1500px]">
+      <div className="flex justify-center flex-wrap  md:flex-nowrap gap-9 pt-[50px] mx-auto my-0 max-w-[1500px]">
         <SideBar
           itemName={data.episode?.name}
           items={true}

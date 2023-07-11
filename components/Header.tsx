@@ -21,7 +21,7 @@ const Header: FC<PropsWithChildren<HeaderProps>> = () => {
           aria-label="Back to homepage"
           className="flex items-center p-2"
         >
-          <h1 className="text-xl text-gray-900 capitalize">Rickipedia</h1>
+          <h1 className="text-xl text-gray-900 capitalize">Rickipedia </h1>
         </a>
         <ul className="items-stretch hidden space-x-3 lg:flex">
           {links.map((link) => (

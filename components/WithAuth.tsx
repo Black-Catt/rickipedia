@@ -13,7 +13,7 @@ export default function withAuth<T extends JSX.IntrinsicAttributes>(
 
     useEffect(() => {
       if (!user) {
-        redirect('/sign-up');
+        redirect('/sign-in');
       }
     }, [user]);
 

@@ -37,12 +37,12 @@ const CharacterCard: FC<CharacterCard> = ({
             <InfoList location={location} />
           </div>
         )}
-        <div className="px-6 pt-4 pb-2">
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+        <div className="px-6 pt-4 pb-2 flex flex-wrap">
+          <span className="inline-block bg-gray-200 rounded-full px-3  max-w-[136px] py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
             #{status}
           </span>
           {type && (
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            <span className="inline-block truncate bg-gray-200 rounded-full max-w-[136px] px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
               #{type}
             </span>
           )}

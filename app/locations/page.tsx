@@ -15,7 +15,7 @@ const LocationPage: FC<LocationPageProps> = ({}) => {
     filters: { locationId },
   } = useAppSelector((state) => state.characters);
 
-  const { data, loading , error } = useGetLocationQuery({
+  const { data, loading, error } = useGetLocationQuery({
     variables: { locationId: locationId },
   });
 
@@ -27,7 +27,7 @@ const LocationPage: FC<LocationPageProps> = ({}) => {
 
   return (
     <div>
-      <div className="flex justify-center gap-9 pt-[50px] mx-auto my-0 max-w-[1500px]">
+      <div className="flex justify-center flex-wrap md:flex-nowrap gap-9 pt-[50px] mx-auto my-0 max-w-[1500px]">
         <SideBar
           itemName={data.location?.name}
           items={true}

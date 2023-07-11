@@ -75,7 +75,7 @@ const CharactersList: FC<CharactersListProps> = ({
   }
 
   return (
-    <div className="max-w-7xl">
+    <div className="max-w-7xl m-3">
       <GridContainer>
         {characters?.map((character: Character) => (
           <Link key={character.id} href={`/character/${character.id}`}>
@@ -104,4 +104,13 @@ const GridContainer = styled.section`
   justify-items: center;
   width: 100%;
   max-width: 1280px;
+  @media (max-width: 1500px) {
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+  }
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
 `;

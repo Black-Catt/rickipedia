@@ -42,7 +42,9 @@ const SignUpPage: FC = ({}) => {
   const onSubmit = async (values: SignUpFormValues) => {
     dispatch(setUser(values));
     toast.success('Successfully entered!');
-    window.location.replace('/');
+    setTimeout(() => {
+      window.location.replace('/');
+    }, 1500);
   };
 
   return (
