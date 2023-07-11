@@ -31,7 +31,13 @@ export const species: FilterOption[] = [
   },
 ];
 
-export const links = [
+export interface ILink {
+  id: number;
+  text: string;
+  url: string;
+}
+
+export const links: ILink[] = [
   {
     id: 1,
     text: 'home',

@@ -1,16 +1,20 @@
 'use client';
 
 import Link from 'next/link';
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 import { links } from '../utils/constants';
 import { useAppSelector, useAppDispatch } from '../redux/store';
 import { clearUser } from '@/redux/features/authSlice';
+import { Drawer } from '@mui/material';
+import BurgerMenu from './BurgerMenu';
+import ActionButtons from './ActionButtons';
 
 interface HeaderProps {}
 
 const Header: FC<PropsWithChildren<HeaderProps>> = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <header className="p-4 shadow-lg bg-white text-gray-700">
@@ -37,29 +41,12 @@ const Header: FC<PropsWithChildren<HeaderProps>> = () => {
           ))}
         </ul>
         <div className="items-center flex-shrink-0 hidden lg:flex">
-          {user ? (
-            <button
-              onClick={() => dispatch(clearUser())}
-              className="self-center text-base text-gray-900 px-8 py-3 rounded"
-            >
-              Logout
-            </button>
-          ) : (
-            <Link
-              href="/sign-in"
-              className="self-center text-base text-gray-900 px-8 py-3 rounded"
-            >
-              Sign in
-            </Link>
-          )}
-          <Link
-            href="/sign-up"
-            className="self-center text-base px-8 py-3 text-white shadow-lg font-semibold rounded bg-violet-400 duration-100 hover:bg-violet-500 "
-          >
-            Sign up
-          </Link>
+          <ActionButtons user={user} />
         </div>
-        <button className="p-4 lg:hidden">
+        <button
+          onClick={() => setIsActive(!isActive)}
+          className="p-4 lg:hidden"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -75,6 +62,12 @@ const Header: FC<PropsWithChildren<HeaderProps>> = () => {
             ></path>
           </svg>
         </button>
+        <BurgerMenu
+          user={user}
+          links={links}
+          isActive={isActive}
+          setIsActive={setIsActive}
+        />
       </div>
     </header>
   );

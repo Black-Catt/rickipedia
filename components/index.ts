@@ -14,6 +14,8 @@ import SelectFilter from './SelectFilter';
 import RadioFilter from './RadioFilter';
 import ErrorList from './ErrorList';
 import withAuth from './WithAuth';
+import ActionButtons from './ActionButtons';
+import BurgerMenu from './BurgerMenu';
 
 export {
   CharacterCard,
@@ -32,4 +34,6 @@ export {
   ErrorList,
   withAuth,
   ClearFlittersButton,
+  ActionButtons,
+  BurgerMenu,
 };

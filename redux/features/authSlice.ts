@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 
-interface AuthState {
-  user: {
-    email: string;
-    password: string;
-    name: string;
-  } | null;
+export interface AuthState {
+  user: UserInfo | null;
+}
+
+export interface UserInfo {
+  email: string;
+  password: string;
+  name: string;
 }
 
 const initialState: AuthState = {
